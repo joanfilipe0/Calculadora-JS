@@ -10,24 +10,46 @@ function clearResult() {
 }
 
 function calculate() {
-    let lista = resultField.innerText.split("");
-    let operatorIndex;
-    let firstParcel;
-    let lastParcel;
+    // Obtendo a expressão e inicializando variáveis
+    let expression = resultField.innerText;
+    let operatorIndex = -1;
+    let firstParcel, lastParcel, operator;
 
-    operators.map(function (operador) {
-        let index = lista.indexOf(operador);
-        if (index != -1) {
+    // Verificando se há mais de um operador na expressão
+    let operatorCount = 0;
+    operators.forEach(function (operador) {
+        operatorCount += expression.split(operador).length - 1;
+    });
+
+    if (operatorCount !== 1) {
+        resultField.innerText = "Erro na expressão";
+        return;
+    }
+
+    // Encontrando o índice do operador na expressão
+    operators.forEach(function (operador) {
+        let index = expression.indexOf(operador);
+        if (index !== -1) {
             operatorIndex = index;
+            return;
         }
     });
 
-    firstParcel = Number(lista.slice(0, operatorIndex).join(""));
-    lastParcel = Number(lista.slice(operatorIndex + 1, lista.length).join(""));
-    operator = lista[operatorIndex];
+    // Separando a expressão nos operandos e operador
+    firstParcel = Number(expression.slice(0, operatorIndex));
+    lastParcel = Number(expression.slice(operatorIndex + 1));
+
+    operator = expression[operatorIndex];
+
+    // Verificando divisão por zero
+    if (operator === "/" && lastParcel === 0) {
+        resultField.innerText = "Divisão por zero";
+        return;
+    }
 
     let result;
 
+    // Realizando o cálculo com base no operador
     switch (operator) {
         case "+":
             result = firstParcel + lastParcel;
@@ -43,12 +65,11 @@ function calculate() {
             break;
     }
 
+    // Exibindo o resultado na tela
     resultField.innerText = result;
 }
 
 function erase() {
-    resultField.innerText = resultField.innerText.substring(
-        0,
-        resultField.innerText.length - 1
-    );
+    // Removendo o último caractere da expressão
+    resultField.innerText = resultField.innerText.slice(0, -1);
 }
