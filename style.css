@@ -1,0 +1,60 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #61C0BF, #6D85A3);
+    font-family: 'Arial', sans-serif;
+}
+
+.main-container {
+    text-align: center;
+}
+
+#result {
+    width: 100%;
+    background-color: white;
+    height: 60px;
+    font-size: 30px;
+    text-align: right;
+    padding: 10px;
+    color: #F54768;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para efeito 3D */
+}
+
+.calculator {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border-radius: 15px;
+    padding: 20px;
+    display: inline-block;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra para efeito 3D */
+}
+
+.calculator--button {
+    color: white;
+    width: 60px;
+    height: 60px;
+    font-size: 25px;
+    cursor: pointer;
+    background-color: rgb(15, 15, 15);
+    border: none;
+    margin: 5px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para efeito 3D */
+}
+
+.calculator--button:hover {
+    background-color: #6e0d1f;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Sombra aumentada ao passar o mouse */
+}
